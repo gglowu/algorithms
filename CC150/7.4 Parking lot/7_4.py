@@ -13,10 +13,10 @@ class Vehicle(object):
 		self.__regnumber = regnumber
 		self.__vtype = vtype
 
-	def getType():
+	def getType(self):
 		return self.__vtype
 
-	def getRegNumber()
+	def getRegNumber(self)
 		return self.__regnumber
 
 class Bus(Vehicle):
@@ -49,19 +49,19 @@ class ParkingTicket(object):
 		self.__ispaid = False
 		self.__isavailable = True
 
-	def payTicket():
+	def payTicket(self):
 		self.__ispaid = True
 
-	def isPaid():
+	def isPaid(self):
 		return self.__ispaid
 
-	def isAvailable():
+	def isAvailable(self):
 		return self.__isavailable
 
-	def destroyTicket():
+	def destroyTicket(self):
 		self.__isavailable = False
 
-	def setLeaveTime(leavetime):
+	def setLeaveTime(self, leavetime):
 		self.leavetime = leavetime
 #########################################################################
 class ParkPot(object):
@@ -72,13 +72,13 @@ class ParkPot(object):
 		self.__floornumber = floornumber
 		self.__uid = uid
 
-	def getUid():
+	def getUid(self):
 		return self.__uid
 
-	def getFloorNumber():
+	def getFloorNumber(self):
 		return self.__floornumber
 	
-	def isAvailable():
+	def isAvailable(self):
 		return self.__availability
 
 	def setAvailability(isavailable):
@@ -89,22 +89,22 @@ class User(object):
 		super(User, self).__init__()
 		self.__car = car
 
-	def getCarType():
+	def getCarType(self):
 		return self.__car.getType()
 
-	def getRegNumber():
+	def getRegNumber(self):
 		return self.__car.getRegNumber()
 
-	def getParkingTicket(parkingticket):
+	def getParkingTicket(self, parkingticket):
 		self.parkingticket = parkingticket
 
-	def payParkingTicket(parkingticket):
+	def payParkingTicket(self, parkingticket):
 		return self.parkingticket
 
-	def tryToDriveInto():
+	def tryToDriveInto(self):
 		return self.__car
 
-	def tryToDriveOut():
+	def tryToDriveOut(self):
 		return self.parkingticket
 ##########################################################################
 class ManagingSystem(object):	
@@ -124,47 +124,47 @@ class ManagingSystem(object):
 					self.__parkingpots.append(pp)
 			self.__flooravailable.append(potsperfloor)
 
-	def generatePotsID():
+	def generatePotsID(self):
 		pass
 
-	def generateEnterTime():
+	def generateEnterTime(self):
 		pass
 
-	def generateLeaveTime():
+	def generateLeaveTime(self):
 		pass
 
-	def generateParkingTicket(regnumber):
+	def generateParkingTicket(self, regnumber):
 		return ParkingTicket(generateEnterTime(), regnumber)
 
-	def leverUp():
+	def leverUp(self):
 		pass
 
-	def leverDown():
+	def leverDown(self):
 		pass
 
-	def addTicket(parkingticket):
+	def addTicket(self, parkingticket):
 		self.__availabletickets.append(parkingticket)
 
-	def removeTicket(parkingticket):
+	def removeTicket(self, parkingticket):
 		pt = next(x for x in self.__availabletickets if x.regnumber == parkingticket.regnumber)
 		pt.destroyTicket()
 		self.__availabletickets.remove(pt)
 
-	def payTicket(parkingticket):
+	def payTicket(self, parkingticket):
 		pt = next(x for x in self.__availabletickets if x.regnumber == parkingticket.regnumber)
 		if pt.isAvailable() == True and pt.isPaid() == False:
 			pt.payTicket()
 			return True
 		return False
 
-	def isAllowedIn(car):
+	def isAllowedIn(self, car):
 		if self.__potsavailable > 0:
 			if car.getType() <= VehicleType.Lorry:
 				this.__potsavailable -= 1
 				return True
 		return False
 
-	def isAllowedOut(parkingticket):
+	def isAllowedOut(self, parkingticket):
 		pt = next(x for x in self.__availabletickets if x.regnumber == parkingticket.regnumber)
 		if pt.isAvailable() == True and pt.isPaid() == True:
 			this.__potsavailable += 1

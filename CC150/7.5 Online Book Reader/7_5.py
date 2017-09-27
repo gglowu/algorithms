@@ -16,37 +16,37 @@ class Book(object):
 		self.__pagecount = 0
 		self.__currentpage = 0
 
-	def getID():
+	def getID(self):
 		return self.__ID
 
-	def getName():
+	def getName(self):
 		return self.__name
 
-	def setName(bookname):
+	def setName(self, bookname):
 		self.__name = bookname
 
-	def getAuthor():
+	def getAuthor(self):
 		return self.__author
 
-	def setAuthor(authorname):
+	def setAuthor(self, authorname):
 		self.__author = authorname
 
-	def getLanguage():
+	def getLanguage(self):
 		return self.__language
 
-	def setLanguage(booklanguage):
+	def setLanguage(self, booklanguage):
 		self.__language = booklanguage
 
-	def getPageCount():
+	def getPageCount(self):
 		return self.__pagecount
 
-	def setPageCount(pagecount):
+	def setPageCount(self, pagecount):
 		self.__pagecount = pagecount
 
-	def getCurrentPage():
+	def getCurrentPage(self):
 		return self.__currentpage
 
-	def setCurrentPage(currentpage):
+	def setCurrentPage(self, currentpage):
 		self.__currentpage = currentpage
 ##########################################################
 class User(object):
@@ -58,22 +58,22 @@ class User(object):
 		self.__usrpwd = usrpwd
 		self.__crtdisplayer = None
 
-	def getCrtDisplayer():
+	def getCrtDisplayer(self):
 		return self.__crtdisplayer
 
-	def setCrtDisplayer(displayer):
+	def setCrtDisplayer(self, displayer):
 		self.__crtdisplayer = displayer
 
-	def getCrtBook():
+	def getCrtBook(self):
 		return self.__crtdisplayer.getCurrentBook()
 
-	def setCrtBook(book):
+	def setCrtBook(self, book):
 		self.__crtdisplayer.setCurrentBook(book)
 
-	def getUsrName():
+	def getUsrName(self):
 		return self.__usrname
 
-	def getUsrPwd():
+	def getUsrPwd(self):
 		return self.__usrpwd
 #############################################################
 class Library(object):
@@ -85,22 +85,22 @@ class Library(object):
 		self.__booklist = []
 		self.__booksamount = 0
 
-	def getBooksAmount():
+	def getBooksAmount(self):
 		return self.__booksamount
 
-	def searchByID(bookid):
+	def searchByID(self, bookid):
 		book = next(x for x in self.__booklist if x.__ID == bookid)
 		return book
 
-	def searchByName(bookname):
+	def searchByName(self, bookname):
 		book = next(x for x in self.__booklist if x.__name == bookname)
 		return book
 
-	def addBook(book):
+	def addBook(self, book):
 		self.__booklist.append(book)
 		self.__booksamount += 1
 
-	def deleteBook(book):
+	def deleteBook(self, book):
 		self.__booklist.remove(book)
 		self.__booksamount -= 1
 ######################################################################
@@ -112,34 +112,34 @@ class Displayer(object):
 		self.__currentbook = None
 
 
-	def getCurrentBook():
+	def getCurrentBook(self):
 		return self.__currentbook
 
-	def setCurrentBook(book):
+	def setCurrentBook(self, book):
 		self.__currentbook = book
 
-	def displayBook(book):
+	def displayBook(self, book):
 		pass
 
-	def displayCrtBook():
+	def displayCrtBook(self):
 		displayBOok(self.__currentbook)
 
-	def jumpToPage(book, pagegoto):
+	def jumpToPage(self, book, pagegoto):
 		pass
 
-	def closeBook(book):
+	def closeBook(self, book):
 		pass
 
-	def changeFontSize():
+	def changeFontSize(self):
 		pass
 
-	def changeBKGroundColor():
+	def changeBKGroundColor(self):
 		pass
 
-	def nextPage(book, crtpage):
+	def nextPage(self, book, crtpage):
 		pass
 
-	def prePage(book, crtpage):
+	def prePage(self, book, crtpage):
 		pass
 ############################################################################
 class UsrManager(object):
@@ -148,27 +148,27 @@ class UsrManager(object):
 		super(UsrManager, self).__init__()
 		self.__usrlist = []
 
-	def generateUsrID():
+	def generateUsrID(self):
 		pass
 
-	def addUsr(usrname, usrpwd, usrid):
+	def addUsr(self, usrname, usrpwd, usrid):
 		newusr = User(generateUsrID(), usrname, usrpwd)
 		self.__usrlist.append(newusr)
 
-	def deleteUsr(usr):
+	def deleteUsr(self, usr):
 		self.__usrlist.remove(usr)
 
-	def isUsrnameAvailable(usrname):
+	def isUsrnameAvailable(self, usrname):
 		return True
 
-	def isUsrpwdAvailable(usrpwd):
+	def isUsrpwdAvailable(self, usrpwd):
 		return True
 	
-	def login(usrname, usrpwd):
+	def login(self, usrname, usrpwd):
 		usr = next(x for x in self.__usrlist if x.getName() == usrname)
 		return usr.getUsrPwd() == usrpwd
 
-	def changeUsrpwd(usrname, oldpwd, newpwd):
+	def changeUsrpwd(self, usrname, oldpwd, newpwd):
 		pass
 ############################################################################
 class OnlineReaderSystem(object):
@@ -179,26 +179,26 @@ class OnlineReaderSystem(object):
 		self.__usrmanager = UsrManager()
 		self.__library = Library(libraryid)
 
-	def login(user):
+	def login(self, user):
 		if self.__usrmanager.login(user.getName(), user.getUsrPwd()) == True:
 			self.__activeUsr.append(user)
 			return True
 		else:
 			return False
 
-	def readCrtBook(user):
+	def readCrtBook(self, user):
 		user.getCrtDisplayer().displayCrtBook()
 
-	def readBook(user, book):
+	def readBook(self, user, book):
 		user.getCrtDisplayer().readBook(book)
 
-	def closeBook(user. book):
+	def closeBook(self, user. book):
 		user.getCrtDisplayer().closeBook(book)
 
-	def nextPage(user):
+	def nextPage(self, user):
 		user.getCrtDisplayer().nextPage()
 
-	def prePage(user):
+	def prePage(self, user):
 		user.getCrtDisplayer().prePage()
 
 

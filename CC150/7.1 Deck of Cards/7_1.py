@@ -12,10 +12,10 @@ class Suit(Enum):
 		super(Suit, self).__init__()
 		self.__value = value
 
-	def getValue():
+	def getValue(self):
 		return self.__value;
 
-	def getSuitFromValue(value):
+	def getSuitFromValue(self,value):
 		pass
 #####################################
 class Card(objec):
@@ -27,13 +27,13 @@ class Card(objec):
 		self._suit = s
 		self._facevalue = 0
 
-	def suit():
+	def suit(self):
 		return self._suit
 
-	def isAvailable():
+	def isAvailable(self):
 		return self.__available
 
-	def setAvailability(setting):
+	def setAvailability(self,setting):
 		self.__available = setting
 #####################################
 class Deck(object):
@@ -43,15 +43,15 @@ class Deck(object):
 		self.__cards = []
 		self.dealtindex = 0
 
-	def setDeckOfCards(cards):
+	def setDeckOfCards(self,cards):
 		self.__cards = cards
-	def shuffle():
+	def shuffle(self):
 		pass
-	def remaingCards():
+	def remaingCards(self):
 		return len(self.__cards) - dealtindex
-	def dealHand(number):
+	def dealHand(self,number):
 		pass
-	def dealCard():
+	def dealCard(self):
 		pass
 #####################################
 class Hand(object):
@@ -60,14 +60,14 @@ class Hand(object):
 		super(Hand, self).__init__()
 		self.__cards = []
 
-	def score():
+	def score(self):
 		sum = 0
 		for card in self.__cards:
 			sum += card.value()
 
 		return sum
 
-	def addCard(card):
+	def addCard(self,card):
 		self.__cards.append(card)
 #####################################
 class BlackJackCard(Card):
@@ -75,7 +75,7 @@ class BlackJackCard(Card):
 	def __init__(self):
 		super(BlackJackCard, self).__init__()
 
-	def value():
+	def value(self):
 		if isAce() == True:
 			return 1
 		elif self._facevalue >= 11 and self._facevalue <= 13
@@ -83,22 +83,22 @@ class BlackJackCard(Card):
 		else:
 			return self._facevalue
 
-	def minValue():
+	def minValue(self):
 		if isAce() == True:
 			return 1
 		else:
 			return value()
 
-	def maxValue():
+	def maxValue(self):
 		if isAce() == True:
 			return 11
 		else:
 			return value()
 	
-	def isAce():
+	def isAce(self):
 		return self._facevalue == 1
 
-	def isFaceCard():
+	def isFaceCard(self):
 		return self._facevalue >= 11 and self._facevalue <= 13
 #####################################
 class BlackJackHand(Hand):
@@ -106,11 +106,11 @@ class BlackJackHand(Hand):
 	def __init__(self):
 		super(BlackJackHand, self).__init__()
 
-	def isBlackJack():
+	def isBlackJack(self):
 		pass
 
-	def is21():
+	def is21(self):
 		pass
 
-	def isFished():
+	def isFished(self):
 		pass

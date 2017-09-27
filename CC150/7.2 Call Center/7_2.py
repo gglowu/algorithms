@@ -5,10 +5,10 @@ class PhoneTicket(object):
 		self.ticketid = ticketid
 		self.__sorted = False
 
-	def isSorted():
+	def isSorted(self):
 		return self.__sorted
 
-	def setSorted(isdone):
+	def setSorted(self, isdone):
 		self.__sorted = isdone
 #########################################################
 class Employee(object):
@@ -18,19 +18,19 @@ class Employee(object):
 		self.employeeid = employeeid
 		self.availability = True
 
-	def isAvailable()
+	def isAvailable(self)
 		return self.availability
 
-	def setAvailable(isavailable):
+	def setAvailable(self, isavailable):
 		self.availability = isavailable
 
-	def handlePhone(phoneticket):
+	def handlePhone(self, phoneticket):
 		if phoneticket >= 10:
 			return False
 		else:
 			return True
 
-	def raiseProblem():
+	def raiseProblem(self):
 		pass
 #########################################################
 class Respond(Employee):
@@ -56,12 +56,12 @@ class CallCenter(object):
 		self.__managers = []
 		self.__directors = []
 
-	def InitSystem(repondlist, managerlist, directorlist):
+	def InitSystem(self, repondlist, managerlist, directorlist):
 		self.__responds.extend(repondlist)
 		self.__directors.extend(directorlist)
 		self.__managers.extend(managerlist)
 
-	def HandlePhoneCall(phone):
+	def HandlePhoneCall(self, phone):
 		pt = PhoneTicket(phone)
 
 		for respond in self.__responds:
@@ -105,7 +105,7 @@ class CallCenter(object):
 		else:
 			return False
 
-	def WaitingForCall()
+	def WaitingForCall(self)
 		while True:
 			time.sleep(1000)
 			id = random.randint(0, 10000000)

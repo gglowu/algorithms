@@ -14,58 +14,58 @@ class User(object):
 		self.__sentaddrequests = {}
 		self.__contacts = {}
 
-	def sendMsgToUser(userto, msg):
+	def sendMsgToUser(self, userto, msg):
 		if isReceived() == True:
 			return True
 		else:
 			return False
 
-	def sendMsgToGroupChat(groupid, msg):
+	def sendMsgToGroupChat(self, groupid, msg):
 		if isReceived() == True:
 			return True
 		else:
 			return False
 
-	def setStatus(status):
+	def setStatus(self, status):
 		self.__userstatus = status
 
-	def getStatus():
+	def getStatus(self):
 		return self.__userstatus
 
-	def addContact(newuser):
+	def addContact(self, newuser):
 		self.__contacts[newuser.getID()] = newuser
 
-	def getRcvedAddRequest():
+	def getRcvedAddRequest(self):
 		return self.__receivedaddrequests
 
-	def addRcvedAddRequest(addrequest):
+	def addRcvedAddRequest(self, addrequest):
 		self.__receivedaddrequests[addrequest.getUserFrom().getID()] = addrequest
 
-	def getSentAddRequest():
+	def getSentAddRequest(self):
 		return self.__sentaddrequests
 
-	def addSentAddRequest(addrequest):
+	def addSentAddRequest(self, addrequest):
 		self.__sentaddrequests[addrequest.getUserTo().getID()] = addrequest
 
-	def removeRcvedAddRequest(addrequest):
+	def removeRcvedAddRequest(self, addrequest):
 		self.__receivedaddrequests.remove(addrequest)
 
-	def requestAddUser(username):
+	def requestAddUser(self, username):
 		pass
 
-	def addPrivateConversation(privatechat):
+	def addPrivateConversation(self, privatechat):
 		self.__privatechats[privatechat.getID()] = privatechat
 
-	def addGroupConversation(groupchat):
+	def addGroupConversation(self, groupchat):
 		self.__groupchats[groupchat.getID()] = groupchat
 
-	def getID():
+	def getID(self):
 		return self.__id
 
-	def getUsername():
+	def getUsername(self):
 		return self.__username
 
-	def getFullname():
+	def getFullname(self):
 		return self.__fullname
 #############################################################################
 class Conversation(object):
@@ -76,13 +76,13 @@ class Conversation(object):
 		self.__participants = []
 		self.__msgs = []
 
-	def getMsgs():
+	def getMsgs(self):
 		return self.__msgs
 
-	def addMsgs(msg):
+	def addMsgs(self, msg):
 		self.__msgs.append(msg)
 
-	def getID():
+	def getID(self):
 		return self.__id
 
 class GroupChat(Conversation):
@@ -90,10 +90,10 @@ class GroupChat(Conversation):
 	def __init__(self):
 		super(GroupChat, self).__init__()
 	
-	def removeParticipant(user):
+	def removeParticipant(self, user):
 		self.__participants.remove(user)
 
-	def addParticipant(user):
+	def addParticipant(self, user):
 		self.__participants.add(user)
 
 class PrivateChat(Conversation):
@@ -103,7 +103,7 @@ class PrivateChat(Conversation):
 		self.__user1 = user1
 		self.__user2 = user2
 
-	def getOtherParticipant(primaryuser):
+	def getOtherParticipant(self, primaryuser):
 		pass
 ##############################################################################
 class Message(object):
@@ -113,10 +113,10 @@ class Message(object):
 		self.__content = content
 		self.__date = date
 
-	def getContent():
+	def getContent(self):
 		return self.__content
 
-	def getDate():
+	def getDate(self):
 		return self.__date
 #############################################################################
 class UserStatusType(Enum):
@@ -141,16 +141,16 @@ class AddRequest(object):
 		self.__date = date
 		self.__requeststatus = None
 
-	def getStatus():
+	def getStatus(self):
 		return self.__requeststatus
 
-	def getUserFrom():
+	def getUserFrom(self):
 		return self.__userfrom
 	
-	def getUserTo():
+	def getUserTo(self):
 		return self.__userto
 
-	def getDate():
+	def getDate(self):
 		return self.__date
 #############################################################################
 class UserStatus(object):
@@ -159,10 +159,10 @@ class UserStatus(object):
 		super(UserStatus, self).__init__()
 		self.__userstatustype = userstatustype
 
-	def getStatusType():
+	def getStatusType(self):
 		return self.__userstatustype
 
-	def setStatusType(statustype):
+	def setStatusType(self, statustype):
 		self.__userstatustype = statustype
 #############################################################################
 
